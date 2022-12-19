@@ -1,11 +1,14 @@
-import { useState } from 'react';
-
+import Layout from './components/UI/Layout/Layout';
+import MenuList from './components/Menu/MenuList/MenuList';
 import './App.css';
-
 function App() {
-	const [count, setCount] = useState(0);
-
-	return <div className='App'>Click on the Vite and React logos to learn more</div>;
+	return (
+		<div>
+			<Layout>
+				<MenuList></MenuList>
+			</Layout>
+		</div>
+	);
 }
 
 export default App;
