@@ -29,7 +29,7 @@ const CartList = () => {
 		<>
 			<h1 className='cart__title'>Your Cart</h1>
 			{cartCtx.items.length > 0 ? (
-				<div className='cart__list'>${cartItems}</div>
+				<div className='cart__list'>{cartItems}</div>
 			) : (
 				<div className='cart__text'>Your Cart is empty</div>
 			)}

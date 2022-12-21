@@ -1,15 +1,16 @@
 .cart__list {
    margin: 0;
-   height: 95%;
+   height: 500px;
    display: flex;
    flex-direction: column;
    justify-content: flex-start;
    flex-wrap: nowrap;
+   overflow-y: scroll;
 }
 
 .cart__list ul {
    list-style: none;
-   padding-left: 2rem;
+   padding-left: 1rem;
 }
 
 .cart__list li {
@@ -27,6 +28,7 @@
 }
 
 .cart__line{
+   margin: 0.5rem;
    background-color: #D7D7F9;
    height: 1px;
 }
