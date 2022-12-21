@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
 const CartContext = React.createContext({
 	items: [],
@@ -10,6 +10,7 @@ const CartContext = React.createContext({
 export default CartContext;
 
 const defaultCart = { items: [], totalAmount: 0 };
+
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState(defaultCart);
 
@@ -48,5 +49,6 @@ export const CartProvider = ({ children }) => {
 		addItem: addItemHandler,
 		removeItem: removeItemHandler,
 	};
+
 	return <CartContext.Provider value={cartData}>{children}</CartContext.Provider>;
 };

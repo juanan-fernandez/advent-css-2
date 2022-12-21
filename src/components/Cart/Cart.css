@@ -1,0 +1,12 @@
+.cart-container{
+   height: 800px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between; 
+   flex-wrap: nowrap;
+}
+
+.cart-containter__amount{
+   align-self: flex-end;
+}
+

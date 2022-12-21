@@ -1,0 +1,32 @@
+.amountbox {
+   display: flex;
+   flex-direction: column;
+}
+
+.amountbox__amount {
+   display: flex;
+   justify-content: end;
+   gap:2rem;
+   height: 3rem;
+   margin-right: 1rem;  
+}
+
+.amountbox__amount--text {
+   font-size: 1rem;
+   line-height: 32px;
+   text-align: end;
+}
+
+.amountbox h1 {
+   padding: 0;
+   margin: 0;
+   line-height: 32px;
+   text-align: right;
+}
+
+.line {
+   height: 2px;
+   background-color: #D7D7F9;
+   border: 1px solid #D7D7F9;
+   margin-bottom: 0.5rem;
+}

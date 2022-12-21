@@ -1,13 +1,15 @@
+import { useContext } from 'react';
 import './CartList.css';
-
+import CartContext from '../../../store/cart-context';
 import Card from '../../UI/Card/Card';
-import CartItem from '../MenuItem/MenuItem.jsx';
+import CartItem from '../CartItem/CartItem.jsx';
 
 const CartList = () => {
-	const colors = ['#e1f0fe', '#f7f7ff', '#dddcf9', '#defef0'];
+	const cartCtx = useContext(CartContext);
+
 	const cartItems = (
 		<ul>
-			{menu.map(item => {
+			{cartCtx.items.map(item => {
 				return (
 					<li key={item.id}>
 						<CartItem
@@ -16,8 +18,8 @@ const CartList = () => {
 							price={item.price}
 							units={item.units}
 							img={item.img}
-							color={colors[item.id % 4]}
 						/>
+						<div className='cart__line'></div>
 					</li>
 				);
 			})}
@@ -25,12 +27,14 @@ const CartList = () => {
 	);
 	return (
 		<>
-			<Card>
-				<h1 className='cart__title'>Your Cart</h1>
-				<div className='cart__list'>{cartItems}</div>
-			</Card>
+			<h1 className='cart__title'>Your Cart</h1>
+			{cartCtx.items.length > 0 ? (
+				<div className='cart__list'>${cartItems}</div>
+			) : (
+				<div className='cart__text'>Your Cart is empty</div>
+			)}
 		</>
 	);
 };
 
-export default Cart;
+export default CartList;
