@@ -8,20 +8,23 @@ const CartAmount = () => {
 	const totalAmount = Number(cartCtx.totalAmount) + Number(taxes);
 	const f = new Intl.NumberFormat('en-us', {
 		currency: 'USD',
-		minimumSignificantDigits: 3,
+		currencyDisplay: 'narrowSymbol',
+		style: 'currency',
 	});
 	return (
 		<div className='amountbox'>
 			<div className='line'></div>
 			<div className='amountbox__amount'>
-				<div className='amountbox__amount--text'>Subtotal:</div>{' '}
-				<h1>${f.format(cartCtx.totalAmount)}</h1>
+				<div className='amountbox__amount--text'>Subtotal:</div>
+				<h1>{f.format(cartCtx.totalAmount)}</h1>
 			</div>
 			<div className='amountbox__amount'>
-				Tax: <h1>${f.format(taxes)}</h1>
+				<div className='amountbox__amount--text'>Tax:</div>
+				<h1>{f.format(taxes)}</h1>
 			</div>
 			<div className='amountbox__amount'>
-				Total: <h1>${f.format(totalAmount)}</h1>
+				<div className='amountbox__amount--text'>Total:</div>
+				<h1>{f.format(totalAmount)}</h1>
 			</div>
 		</div>
 	);

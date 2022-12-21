@@ -8,7 +8,7 @@ const MenuItem = ({ id, name, price, img, color }) => {
 	const format2Digits = myNumber => (Math.round(myNumber * 100) / 100).toFixed(2);
 
 	const buttonClickHandler = () => {
-		cartCtx.addItem({ id, name, price, img });
+		cartCtx.addToCart({ id, name, price, img });
 	};
 	return (
 		<div className='item'>
