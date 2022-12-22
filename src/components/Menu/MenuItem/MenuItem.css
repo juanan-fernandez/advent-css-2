@@ -68,3 +68,32 @@
    cursor: pointer;
 }
 
+.item__button--in-cart {
+   display: flex;
+   /* align-items: center;
+   align-content: center;*/
+   justify-content: center;
+   padding: 4px 18px;
+   border: none;
+   width: 160px;
+   height: 32px;
+   background: black;
+   border-radius: 20px;
+   color:#ffffff;
+   line-height: 24px;
+   font-weight: 700;
+   font-size: 1rem;
+   position: absolute;
+   top: 135px;
+   left: 37%;
+}
+
+.item__button--in-cart img {
+   height: 20px;
+   width: 50px;
+   position: absolute;
+   top:6px;
+   left: 22px;
+}
+
+
