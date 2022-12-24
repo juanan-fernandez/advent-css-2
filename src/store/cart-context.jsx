@@ -24,16 +24,18 @@ export const CartProvider = ({ children }) => {
 			return { items: updatedItemsCart, totalAmount: updatedAmount };
 		});
 	};
-	const addItemHandler = id => {
+	const addItemHandler = (id, quit = false) => {
 		let updatedItemsCart = [];
 		let updatedAmount = 0;
+		let updatedUnits = 0;
 		const searchedItem = cart.items.find(it => it.id === id);
 
 		if (searchedItem) {
 			setCart(prevCart => {
 				updatedItemsCart = prevCart.items.map(itm => {
 					if (itm.id === id) {
-						return { ...itm, units: Number(itm.units) + 1 };
+						updatedUnits = quit ? Number(itm.units) - 1 : Number(itm.units) + 1;
+						return { ...itm, units: updatedUnits };
 					}
 					return itm;
 				});

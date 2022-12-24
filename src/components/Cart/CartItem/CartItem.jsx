@@ -1,15 +1,25 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import './CartItem.css';
 import minorLogo from '../../../assets/chevron.svg';
 import plusLogo from '../../../assets/chevron_right.svg';
 import CartContext from '../../../store/cart-context';
 import { formatUsdCurrency } from '../../../utils/numbers.js';
+
 const CartItem = ({ id, name, price, units, img }) => {
+	const [showModal, setShowModal] = useState(false);
 	const cartCtx = useContext(CartContext);
 	const addOneItemHandler = () => {
-		console.log(id);
 		cartCtx.addItem(id);
 	};
+
+	const removeOneItemHandler = () => {
+		if (units === 1) {
+			setShowModal(true);
+			return;
+		}
+		cartCtx.addItem(id, true); //param true for subsrtracting one item
+	};
+
 	return (
 		<div className='cart-item'>
 			<div className='cart-item__img'>
@@ -23,7 +33,7 @@ const CartItem = ({ id, name, price, units, img }) => {
 				</div>
 				<div className='cart-item__info--buttons'>
 					<div>
-						<button>
+						<button onClick={removeOneItemHandler}>
 							<img src={minorLogo} alt='One less' />
 						</button>
 						<span>{units}</span>

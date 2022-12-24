@@ -24,7 +24,7 @@ const CartAmount = () => {
 			</div>
 			<div className='amountbox__amount'>
 				<div className='amountbox__amount--text'>Total:</div>
-				<h1>{f.format(totalAmount)}</h1>
+				<h1 className='azulete'>{f.format(totalAmount)}</h1>
 			</div>
 		</div>
 	);

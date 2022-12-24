@@ -1,7 +1,7 @@
 .item {
    width: 100%;
    height: 150px;
-   min-width: 375px;
+   min-width: 400px;
    padding:0;
    margin:0;
    position: relative;
@@ -11,8 +11,8 @@
 
 .item img{
    position: absolute;
-   width: 144px;
-   height: 144px;
+   width: 140px;
+   height: 140px;
    top:0px;
    left: 0px;
    z-index: 10;
@@ -21,7 +21,7 @@
 .item__text--background {
    border-radius: 12px 0px 0 12px;
    height: 140px;
-   width: 98%;
+   width: 95%;
    margin-top: 0.8rem;
    position: relative; 
    top:0px; 
