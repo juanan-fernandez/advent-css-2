@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
 
+export const InCartContext = React.createContext();
+
+export const InCartProvider = ({ children }) => {
+	const [inCart, setInCart] = useState(false);
+	const putInCart = () => setInCart(true);
+	const quitInCart = () => setInCart(false);
+	const isInCart = {
+		inCart,
+		putInCart,
+		quitInCart,
+	};
+	return <InCartContext.Provider value={isInCart}>{children}</InCartContext.Provider>;
+};
+
 const CartContext = React.createContext({
 	items: [],
 	totalAmount: 0,
@@ -7,7 +21,6 @@ const CartContext = React.createContext({
 	addItem: id => {},
 	removeItem: id => {},
 });
-
 export default CartContext;
 
 const defaultCart = { items: [], totalAmount: 0 };
@@ -39,14 +52,25 @@ export const CartProvider = ({ children }) => {
 					}
 					return itm;
 				});
-				updatedAmount = Number(prevCart.totalAmount) + Number(searchedItem.price);
+				updatedAmount = quit
+					? -1 * Number(searchedItem.price)
+					: Number(searchedItem.price);
+				updatedAmount = Number(prevCart.totalAmount) + updatedAmount;
 				return { items: updatedItemsCart, totalAmount: updatedAmount };
 			});
 		}
 	};
 
 	const removeItemHandler = id => {
-		console.log(id);
+		let updatedItemsCart = [];
+		let updatedAmount = 0;
+		setCart(prevCart => {
+			updatedItemsCart = prevCart.items.filter(itm => itm.id !== id);
+			updatedAmount = updatedItemsCart.reduce((acc, itm) => {
+				return (acc += itm.price * itm.units);
+			}, 0);
+			return { items: updatedItemsCart, totalAmount: updatedAmount };
+		});
 	};
 
 	const cartData = {

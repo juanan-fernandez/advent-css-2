@@ -1,17 +1,23 @@
 import './MenuItem.css';
 import checkSvg from '../../../assets/check.svg';
 import { format2Digits } from '../../../utils/numbers';
-import { useContext, useState } from 'react';
-import CartContext from '../../../store/cart-context';
+import { useContext, useEffect, useState } from 'react';
+import CartContext, { InCartContext } from '../../../store/cart-context';
 
 const MenuItem = ({ id, name, price, img, color }) => {
 	const cartCtx = useContext(CartContext);
+	const inCartCtx = useContext(InCartContext);
 	const [isInCart, setIsInCart] = useState(false);
-	//const format2Digits = myNumber => (Math.round(myNumber * 100) / 100).toFixed(2);
+
+	const totalItemsInCart = cartCtx.items.length;
+	useEffect(() => {
+		const itemInCart = cartCtx.items.find(itm => itm.id === id);
+		setIsInCart(Boolean(itemInCart));
+	}, [totalItemsInCart]);
 
 	const buttonClickHandler = () => {
 		cartCtx.addToCart({ id, name, price, img });
-		setIsInCart(true);
+		//setIsInCart(true);
 	};
 
 	const btnAddToCart = !isInCart ? (

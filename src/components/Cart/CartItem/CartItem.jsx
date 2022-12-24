@@ -3,11 +3,22 @@ import './CartItem.css';
 import minorLogo from '../../../assets/chevron.svg';
 import plusLogo from '../../../assets/chevron_right.svg';
 import CartContext from '../../../store/cart-context';
+import CartRemoveQuestion from './CartRemoveQuestion';
+
 import { formatUsdCurrency } from '../../../utils/numbers.js';
 
 const CartItem = ({ id, name, price, units, img }) => {
 	const [showModal, setShowModal] = useState(false);
 	const cartCtx = useContext(CartContext);
+
+	const closeModal = () => {
+		setShowModal(false);
+	};
+
+	const removeItem = () => {
+		cartCtx.removeItem(id);
+	};
+
 	const addOneItemHandler = () => {
 		cartCtx.addItem(id);
 	};
@@ -20,7 +31,9 @@ const CartItem = ({ id, name, price, units, img }) => {
 		cartCtx.addItem(id, true); //param true for subsrtracting one item
 	};
 
-	return (
+	return showModal ? (
+		<CartRemoveQuestion removeItem={removeItem} closeModal={closeModal} />
+	) : (
 		<div className='cart-item'>
 			<div className='cart-item__img'>
 				<img src={img} />
